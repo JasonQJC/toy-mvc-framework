@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +17,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 
 import com.google.common.collect.Lists;
+import com.zaxxer.hikari.HikariDataSource;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,6 +29,7 @@ public final class DBUtil {
   private static final String PASSWORD;
   private static final QueryRunner QUERY_RUNNER = new QueryRunner();
   private static final ThreadLocal<Connection> CONNECTION_HOLDER = new ThreadLocal<>();
+  private static final HikariDataSource DATA_SOURCE;
 
   static {
     Properties conf = PropsUtil.loadProps("config.properties");
@@ -36,11 +37,11 @@ public final class DBUtil {
     URL = conf.getProperty("jdbc.url");
     USERNAME = conf.getProperty("jdbc.username");
     PASSWORD = conf.getProperty("jdbc.password");
-    try {
-      Class.forName(DRIVER);
-    } catch (ClassNotFoundException e) {
-      log.error("can not load jdbc driver", e);
-    }
+    DATA_SOURCE = new HikariDataSource();
+    DATA_SOURCE.setJdbcUrl(URL);
+    DATA_SOURCE.setUsername(USERNAME);
+    DATA_SOURCE.setPassword(PASSWORD);
+    DATA_SOURCE.setDriverClassName(DRIVER);
   }
 
   public static <T> List<T> getEntityList(Class<T> entityClass, String sql, Object... params) {
@@ -72,6 +73,8 @@ public final class DBUtil {
       result = QUERY_RUNNER.query(conn, sql, new MapListHandler(), params);
     } catch (Exception e) {
       e.printStackTrace();
+    } finally {
+      CONNECTION_HOLDER.remove();
     }
     return result;
   }
@@ -83,6 +86,8 @@ public final class DBUtil {
       rows = QUERY_RUNNER.update(conn, sql, params);
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      CONNECTION_HOLDER.remove();
     }
     return rows;
   }
@@ -155,7 +160,8 @@ public final class DBUtil {
     Connection conn = CONNECTION_HOLDER.get();
     if (conn == null) {
       try {
-        conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        conn = DATA_SOURCE.getConnection();
+        CONNECTION_HOLDER.set(conn);
       } catch (SQLException e) {
         e.printStackTrace();
         log.error("get Connection fail!", e);
