@@ -17,19 +17,20 @@ public class CoffeeService {
   }
   
   public Coffee getCoffee(long id) {
-    return null;
+    String sql = "select * from coffee where id = ?";
+    return DBUtil.getEntity(Coffee.class, sql, id);
   }
 
   public boolean createCoffee(Map<String, Object> fieldMap) {
-    return false;
+    return DBUtil.insertEntity(Coffee.class, fieldMap);
   }
 
   public boolean updateCoffee(long id, Map<String, Object> fieldMap) {
-    return false;
+    return DBUtil.updateEntity(Coffee.class, id, fieldMap);
   }
 
   public boolean deleteCoffee(long id) {
-    return false;
+    return DBUtil.deleteEntity(Coffee.class, id);
   }
 
 }
