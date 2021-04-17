@@ -12,7 +12,7 @@ import org.apache.commons.lang3.reflect.MethodUtils;
 import com.google.common.collect.Maps;
 import com.jasonqjc.version2.framework.annotation.RequestHandler;
 
-public class ControllerWrapper {
+public class ControllerHandlerHolder {
   private static final Map<Request,HandlerClassInfo> REQUEST_HANDLERCLASS_MAP = Maps.newHashMap();
   
   static {
