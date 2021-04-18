@@ -11,6 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class RequestParam {
 
-  private Map<String, ?> paramMap;
-  
+  private Map<String, Object> paramMap;
+
+  public long getLong(String key) {
+    return Long.parseLong((String) paramMap.get(key));
+  }
+
 }

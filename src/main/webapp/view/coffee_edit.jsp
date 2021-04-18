@@ -8,6 +8,6 @@
 <h1>edit interface</h1>
 
 <%-- TODO --%>
-
+${coffee }
 </body>
 </html>
