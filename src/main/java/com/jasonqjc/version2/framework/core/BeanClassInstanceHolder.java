@@ -8,11 +8,10 @@ import org.apache.logging.log4j.core.util.ReflectionUtil;
 import com.google.common.collect.Maps;
 
 public final class BeanClassInstanceHolder {
-
   private static final Map<Class<?>,Object> BEAN_MAP = Maps.newHashMap();
 
   static {
-   Set<Class<?>> classSet = BeanClassHolder.getAllClassSet();
+   Set<Class<?>> classSet = BeanClassHolder.getBeanClassSet();
    for (Class<?> clas : classSet) {
      Object object = ReflectionUtil.instantiate(clas);
      BEAN_MAP.put(clas, object);

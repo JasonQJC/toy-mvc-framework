@@ -5,10 +5,9 @@ import java.util.Map;
 
 import com.jasonqjc.version1.model.Coffee;
 import com.jasonqjc.version1.util.DBUtil;
+import com.jasonqjc.version2.framework.annotation.Service;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
+@Service
 public class CoffeeService {
 
   public List<Coffee> getCoffeeList() {

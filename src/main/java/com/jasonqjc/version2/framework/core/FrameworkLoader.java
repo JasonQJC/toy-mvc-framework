@@ -11,7 +11,4 @@ public final class FrameworkLoader {
     }
   }
   
-  public static void main(String[] args) {
-    init();
-  }
 }
