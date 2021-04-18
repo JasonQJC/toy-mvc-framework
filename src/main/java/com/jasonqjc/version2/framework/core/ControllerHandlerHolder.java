@@ -26,12 +26,12 @@ public class ControllerHandlerHolder {
           for (Method requestMethod : requestMethods) {
             RequestHandler annotation = requestMethod.getAnnotation(RequestHandler.class);
             String mapping = annotation.value();
-            if(StringUtils.isNotBlank(mapping) && mapping.matches("^\\w+\\s+\\w+$")) {
-              String[] split = mapping.split(" ", 1);
+            if(StringUtils.isNotBlank(mapping) && mapping.matches("^\\w+\\s+.+")) {
+              String[] split = mapping.split(" ", 2);
               if(split != null && split.length == 2) {
                 String method = split[0];
                 String path = split[1].trim();
-                Request request = new Request(method,path);
+                Request request = new Request(method.toUpperCase(),path);
                 HandlerClassInfo handlerClassInfo = new HandlerClassInfo(clas,requestMethod);
                 REQUEST_HANDLERCLASS_MAP.put(request, handlerClassInfo);
               }
@@ -43,6 +43,7 @@ public class ControllerHandlerHolder {
   }
   
   public static HandlerClassInfo getHandlerClassInfo(String method,String requestPath) {
-    return REQUEST_HANDLERCLASS_MAP.get(new Request(method,requestPath));
+    return REQUEST_HANDLERCLASS_MAP.get(new Request(method.toUpperCase(),requestPath));
   }
+  
 }

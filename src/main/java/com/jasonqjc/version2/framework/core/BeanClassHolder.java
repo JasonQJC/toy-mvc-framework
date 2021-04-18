@@ -25,7 +25,7 @@ public final class BeanClassHolder {
           SERVICE_CLASS_SET.add(item);
         }
         if(item.isAnnotationPresent(Controller.class)) {
-          SERVICE_CLASS_SET.add(item);
+          CONTROLLER_CLASS_SET.add(item);
         }
       });
       BEAN_CLASS_SET.addAll(getServiceClassSet());
