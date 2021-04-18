@@ -16,11 +16,10 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
 import com.google.common.net.MediaType;
-import com.jasonqjc.version2.framework.BeanClassInstanceHolder;
-import com.jasonqjc.version2.framework.ConfigHolder;
-import com.jasonqjc.version2.framework.ControllerHandlerHolder;
-import com.jasonqjc.version2.framework.FrameworkLoader;
-import com.jasonqjc.version2.framework.HandlerClassInfo;
+import com.jasonqjc.version2.framework.config.ConfigHolder;
+import com.jasonqjc.version2.framework.core.BeanClassInstanceHolder;
+import com.jasonqjc.version2.framework.core.ControllerHandlerHolder;
+import com.jasonqjc.version2.framework.core.FrameworkLoader;
 
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletContext;

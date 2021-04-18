@@ -1,4 +1,4 @@
-package com.jasonqjc.version2.framework;
+package com.jasonqjc.version2.framework.config;
 
 import java.util.Properties;
 

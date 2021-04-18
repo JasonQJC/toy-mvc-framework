@@ -1,4 +1,4 @@
-package com.jasonqjc.version2.framework;
+package com.jasonqjc.version2.framework.util;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.jasonqjc.version2.framework;
+package com.jasonqjc.version2.framework.core;
 
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -11,6 +11,8 @@ import org.apache.commons.lang3.reflect.MethodUtils;
 
 import com.google.common.collect.Maps;
 import com.jasonqjc.version2.framework.annotation.RequestHandler;
+import com.jasonqjc.version2.framework.web.HandlerClassInfo;
+import com.jasonqjc.version2.framework.web.Request;
 
 public class ControllerHandlerHolder {
   private static final Map<Request,HandlerClassInfo> REQUEST_HANDLERCLASS_MAP = Maps.newHashMap();

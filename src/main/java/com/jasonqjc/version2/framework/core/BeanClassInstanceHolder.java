@@ -1,4 +1,4 @@
-package com.jasonqjc.version2.framework;
+package com.jasonqjc.version2.framework.core;
 
 import java.util.Map;
 import java.util.Set;

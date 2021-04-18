@@ -1,4 +1,4 @@
-package com.jasonqjc.version2.framework;
+package com.jasonqjc.version2.framework.core;
 
 import java.util.Set;
 
@@ -7,6 +7,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.google.common.collect.Sets;
 import com.jasonqjc.version2.framework.annotation.Controller;
 import com.jasonqjc.version2.framework.annotation.Service;
+import com.jasonqjc.version2.framework.config.ConfigHolder;
+import com.jasonqjc.version2.framework.util.ClassUtil;
 
 public final class BeanClassHolder {
   private static final Set<Class<?>> ALL_CLASS_SET;
