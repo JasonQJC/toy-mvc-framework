@@ -5,6 +5,9 @@ import java.lang.reflect.Method;
 import com.jasonqjc.version1.util.DBUtil;
 import com.jasonqjc.version2.framework.annotation.Transaction;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class TransactionProxy implements Proxy {
 
   private static final ThreadLocal<Boolean> FLAG_HOLDER = new ThreadLocal<>() {
@@ -23,12 +26,12 @@ public class TransactionProxy implements Proxy {
       FLAG_HOLDER.set(true);
       try {
         DBUtil.beginTransaction();
-        System.out.println("begin transaction");
+        log.debug("begin transaction");
         result = targetMethod.invoke(proxyChain.getTargetObject(), proxyChain.getMethodParmas());
-        System.out.println("commit transaction");
+        log.debug("commit transaction");
         DBUtil.commitTransaction();
       } catch (Exception e) {
-        System.out.println("rollback transaction");
+        log.debug("rollback transaction");
         DBUtil.rollbackTransaction();
         throw e;
       } finally {

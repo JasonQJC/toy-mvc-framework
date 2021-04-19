@@ -7,7 +7,10 @@ import com.jasonqjc.version2.framework.annotation.Aspect;
 import com.jasonqjc.version2.framework.annotation.Controller;
 import com.jasonqjc.version2.framework.proxy.AspectProxy;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Aspect(Controller.class)
+@Slf4j
 public class ControllerAspect extends AspectProxy {
 
 	
@@ -15,16 +18,16 @@ public class ControllerAspect extends AspectProxy {
 
 	@Override
 	public void before(Class<?> cls, Method method, Object[] params) throws Throwable {
-		System.out.println("--------------------bengin------------------");
+		log.debug("--------------------bengin------------------");
 		begin = System.currentTimeMillis();
-		System.out.println("class: " + cls.getName());
-		System.out.println("method: " + method.getName());
+		log.debug("class: {}", cls.getName());
+		log.debug("method: {}", method.getName());
 	}
 
 	@Override
 	public void after(Class<?> cls, Method method, Object[] params) throws Throwable {
-		System.out.println("time: " + (System.currentTimeMillis() - begin));
-		System.out.println("----------------------end-------------------");
+		log.debug("time: {}", (System.currentTimeMillis() - begin));
+		log.debug("----------------------end-------------------");
 	}
 
 }
