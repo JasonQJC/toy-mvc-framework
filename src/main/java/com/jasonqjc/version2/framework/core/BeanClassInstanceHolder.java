@@ -18,6 +18,10 @@ public final class BeanClassInstanceHolder {
    }
   }
   
+  public static void setBean(Class<?> cls, Object obj) {
+    BEAN_MAP.put(cls, obj);
+  }
+  
   @SuppressWarnings("unchecked")
   public static <T> T getBean(Class<T> clas) {
     return (T) BEAN_MAP.get(clas);
