@@ -19,9 +19,6 @@ import org.apache.commons.dbutils.handlers.MapListHandler;
 import com.google.common.collect.Lists;
 import com.zaxxer.hikari.HikariDataSource;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public final class DBUtil {
   private static final String DRIVER;
   private static final String URL;
@@ -49,8 +46,6 @@ public final class DBUtil {
       return QUERY_RUNNER.query(conn, sql, new BeanListHandler<T>(entityClass), params);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      CONNECTION_HOLDER.remove();
     }
     return null;
   }
@@ -60,8 +55,6 @@ public final class DBUtil {
       return QUERY_RUNNER.query(conn, sql, new BeanHandler<T>(entityClass), params);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      CONNECTION_HOLDER.remove();
     }
     return null;
   }
@@ -73,8 +66,6 @@ public final class DBUtil {
       result = QUERY_RUNNER.query(conn, sql, new MapListHandler(), params);
     } catch (Exception e) {
       e.printStackTrace();
-    } finally {
-      CONNECTION_HOLDER.remove();
     }
     return result;
   }
@@ -86,15 +77,13 @@ public final class DBUtil {
       rows = QUERY_RUNNER.update(conn, sql, params);
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
-      CONNECTION_HOLDER.remove();
     }
     return rows;
   }
 
   public static <T> boolean insertEntity(Class<T> entityClass, Map<String, Object> fieldMap) {
     if (CollectionUtils.isEmpty(fieldMap.keySet())) {
-      log.error("can not insert entity: fieldMap is empty");
+      System.err.println("can not insert entity: fieldMap is empty");
       return false;
     }
 
@@ -116,7 +105,7 @@ public final class DBUtil {
 
   public static <T> boolean updateEntity(Class<T> entityClass, long id, Map<String, Object> fieldMap) {
     if (CollectionUtils.isEmpty(fieldMap.keySet())) {
-      log.error("can not update entity: fieldMap is empty");
+      System.err.println("can not update entity: fieldMap is empty");
       return false;
     }
 
@@ -164,10 +153,50 @@ public final class DBUtil {
         CONNECTION_HOLDER.set(conn);
       } catch (SQLException e) {
         e.printStackTrace();
-        log.error("get Connection fail!", e);
       }
     }
     return conn;
+  }
+
+  public static void beginTransaction() {
+    Connection conn = getConnection();
+    if (conn != null) {
+      try {
+        conn.setAutoCommit(false);
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        CONNECTION_HOLDER.set(conn);
+      }
+    }
+  }
+
+  public static void commitTransaction() {
+    Connection conn = getConnection();
+    if (conn != null) {
+      try {
+        conn.commit();
+        conn.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        CONNECTION_HOLDER.remove();
+      }
+    }
+  }
+
+  public static void rollbackTransaction() {
+    Connection conn = getConnection();
+    if (conn != null) {
+      try {
+        conn.rollback();
+        conn.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        CONNECTION_HOLDER.remove();
+      }
+    }
   }
 
 }

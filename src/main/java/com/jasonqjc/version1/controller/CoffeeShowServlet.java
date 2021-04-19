@@ -3,8 +3,8 @@ package com.jasonqjc.version1.controller;
 import java.io.IOException;
 import java.util.List;
 
+import com.jasonqjc.test.CoffeeService;
 import com.jasonqjc.version1.model.Coffee;
-import com.jasonqjc.version1.service.CoffeeService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

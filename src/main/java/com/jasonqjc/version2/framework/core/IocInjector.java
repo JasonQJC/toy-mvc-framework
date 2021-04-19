@@ -10,7 +10,7 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 
 import com.jasonqjc.version2.framework.annotation.Inject;
 
-public final class IocContainer {
+public final class IocInjector {
   static {
     Map<Class<?>, Object> beanMap = BeanClassInstanceHolder.getBeanMap();
     if(MapUtils.isNotEmpty(beanMap)) {

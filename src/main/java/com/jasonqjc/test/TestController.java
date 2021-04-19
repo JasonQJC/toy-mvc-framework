@@ -2,7 +2,6 @@ package com.jasonqjc.test;
 
 import java.util.Map;
 
-import com.jasonqjc.version1.service.CoffeeService;
 import com.jasonqjc.version2.framework.annotation.Controller;
 import com.jasonqjc.version2.framework.annotation.Inject;
 import com.jasonqjc.version2.framework.annotation.RequestHandler;

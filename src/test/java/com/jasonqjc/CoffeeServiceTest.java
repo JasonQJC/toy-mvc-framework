@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 
+import com.jasonqjc.test.CoffeeService;
 import com.jasonqjc.version1.model.Coffee;
-import com.jasonqjc.version1.service.CoffeeService;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

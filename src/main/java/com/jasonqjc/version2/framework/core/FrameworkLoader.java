@@ -8,7 +8,7 @@ public final class FrameworkLoader {
     Class<?>[] classArr = { BeanClassHolder.class, 
                             BeanClassInstanceHolder.class, 
                             AopHelper.class,
-                            IocContainer.class,
+                            IocInjector.class,
                             ControllerHandlerHolder.class };
     for (Class<?> clas : classArr) {
       ClassUtil.loadClass(clas.getName(), true);

@@ -12,7 +12,7 @@
 	<h1>create interface</h1>
 	<button type="button" onclick="aaa()">create</button>
 	<button type="button" onclick="update()">update</button>
-	<button type="button" onclick="delete()">delete</button>
+	<button type="button" onclick="del()">delete</button>
 	<%-- TODO --%>
 	<script type="text/javascript">
 		function aaa() {
@@ -35,7 +35,7 @@
 			  console.log(response);
 			});
 		}
-		function delete() {
+		function del() {
 			var settings = {
 			  "url": "${BASE }/v2/coffee_edit?id=1",
 			  "method": "DELETE",
