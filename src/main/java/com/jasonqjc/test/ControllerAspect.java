@@ -3,9 +3,9 @@ package com.jasonqjc.test;
 
 import java.lang.reflect.Method;
 
-import com.jasonqjc.version2.framework.annotation.Aspect;
-import com.jasonqjc.version2.framework.annotation.Controller;
-import com.jasonqjc.version2.framework.proxy.AspectProxy;
+import com.jasonqjc.core.annotation.Aspect;
+import com.jasonqjc.core.annotation.Controller;
+import com.jasonqjc.core.proxy.AspectProxy;
 
 import lombok.extern.slf4j.Slf4j;
 

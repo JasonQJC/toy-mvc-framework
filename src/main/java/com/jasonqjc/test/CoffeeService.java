@@ -3,10 +3,10 @@ package com.jasonqjc.test;
 import java.util.List;
 import java.util.Map;
 
-import com.jasonqjc.version1.model.Coffee;
-import com.jasonqjc.version1.util.DBUtil;
-import com.jasonqjc.version2.framework.annotation.Service;
-import com.jasonqjc.version2.framework.annotation.Transaction;
+import com.jasonqjc.core.annotation.Service;
+import com.jasonqjc.core.annotation.Transaction;
+import com.jasonqjc.core.util.DBUtil;
+import com.jasonqjc.test.model.Coffee;
 
 @Service
 public class CoffeeService {

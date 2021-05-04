@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.jasonqjc.test.CoffeeService;
-import com.jasonqjc.version1.model.Coffee;
+import com.jasonqjc.test.model.Coffee;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

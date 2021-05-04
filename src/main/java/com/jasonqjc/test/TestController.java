@@ -2,12 +2,12 @@ package com.jasonqjc.test;
 
 import java.util.Map;
 
-import com.jasonqjc.version2.framework.annotation.Controller;
-import com.jasonqjc.version2.framework.annotation.Inject;
-import com.jasonqjc.version2.framework.annotation.RequestHandler;
-import com.jasonqjc.version2.framework.web.RequestParam;
-import com.jasonqjc.version2.framework.web.ResponseData;
-import com.jasonqjc.version2.framework.web.View;
+import com.jasonqjc.core.annotation.Controller;
+import com.jasonqjc.core.annotation.Inject;
+import com.jasonqjc.core.annotation.RequestHandler;
+import com.jasonqjc.core.web.RequestParam;
+import com.jasonqjc.core.web.ResponseData;
+import com.jasonqjc.core.web.View;
 
 @Controller
 public class TestController {
